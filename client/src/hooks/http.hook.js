@@ -1,5 +1,7 @@
 import {useState, useCallback} from 'react'
 
+const API_URL = "http://localhost:5000";
+
 export const useHttp = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -12,7 +14,7 @@ export const useHttp = () => {
         headers['Content-Type'] = 'application/json'
       }
 
-      const response = await fetch(url, {method, body, headers})
+      const response = await fetch(`${API_URL}${url}`, {method, body, headers})
       const data = await response.json()
 
       if (!response.ok) {
